@@ -9,7 +9,7 @@
         <p class="text-center">Sistem Tata Usaha BPSMB adalah platform yang dirancang untuk mempermudah pengelolaan data dan informasi di BPSMB. Dengan sistem ini, Anda dapat mengakses berbagai fitur seperti pengelolaan dokumen, laporan, dan informasi terkait BPSMB dengan mudah dan efisien.</p>
         <p class="text-center">Untuk memulai, silakan masuk ke akun Anda dengan mengklik tombol di bawah ini.</p>
         <a href="{{ route('login') }}" class="btn btn-primary btn-lg">
-            Mulai Menulis Surat
+            Masuk Dashboard
         </a>
     </div>
 </div>

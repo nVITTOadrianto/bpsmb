@@ -15,26 +15,29 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
+                    <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" aria-current="page"
+                        href="{{ route('home') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('about') }}">About</a>
+                    <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}"
+                        href="{{ route('about') }}">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('contact') }}">Contact</a>
+                    <a class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}"
+                        href="{{ route('contact') }}">Contact</a>
                 </li>
-                <div class="">
-                    @if(!auth()->check())
+                @if (!auth()->check())
                     <li class="nav-item">
                         <a class="btn btn-primary" href="{{ route('login') }}" role="button">
                             <i class="bi bi-box-arrow-in-right me-1"></i>
                             Login
                         </a>
                     </li>
-                    @else
+                @else
                     <li class="nav-item">
                         <div class="dropdown">
-                            <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle user-info"
+                            <a href="#"
+                                class="d-flex align-items-center text-decoration-none dropdown-toggle user-info"
                                 id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                 <div>
                                     <div class="nav-link">{{ Auth::user()->name }}</div>
@@ -58,8 +61,7 @@
                             </ul>
                         </div>
                     </li>
-                    @endif
-                </div>
+                @endif
             </ul>
         </div>
 </nav>

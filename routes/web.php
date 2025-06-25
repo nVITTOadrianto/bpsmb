@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\SuratMasukController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,8 +37,18 @@ Route::middleware(['guest'])->group(function () {
 
 # DASHBOARD
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard.index');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+    Route::middleware(['role:Administrasi'])->group(function () {
+        Route::prefix('/admin/surat')->name('admin.surat.')->group(function () {
+            Route::get('/', [SuratMasukController::class, 'index'])->name('index');
+            Route::get('/create', [SuratMasukController::class, 'create'])->name('create');
+            Route::post('/', [SuratMasukController::class, 'store'])->name('store');
+            Route::get('/{suratMasuk}', [SuratMasukController::class, 'show'])->name('show');
+            Route::post('/{suratMasuk}/send-to-approval', [SuratMasukController::class, 'sendToApproval'])->name('sendToApproval');
+            Route::get('/{suratMasuk}/print', [SuratMasukController::class, 'printDocument'])->name('print');
+            // Tambahkan rute untuk edit/delete jika diperlukan
+        });
+    });
 });

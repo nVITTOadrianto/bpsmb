@@ -131,13 +131,13 @@
         </div>
         <ul class="nav flex-column px-2 py-3 gap-1 flex-grow-1">
             <li class="nav-item">
-                <a href="#" class="nav-link active" title="Dashboard">
+                <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" title="Dashboard">
                     <i class="bi bi-house-door"></i>
                     <span class="sidebar-label">Dashboard</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link" title="Surat">
+                <a href="{{ route('admin.surat.index') }}" class="nav-link {{ request()->routeIs('admin.surat.index') ? 'active' : '' }}" title="Surat">
                     <i class="bi bi-envelope"></i>
                     <span class="sidebar-label">Surat</span>
                 </a>
