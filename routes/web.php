@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+# LANDING PAGES
 Route::get('/', function () {
     return view('home');
 })->name('home');
@@ -25,23 +27,16 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
-Route::get('login', function () {
-    return view('auth.login');
-})->name('login');
+# LOGIN
+Route::middleware(['guest'])->group(function () {
+    Route::get('/login', [LoginController::class, 'index'])->name('login');
+    Route::post('/login', [LoginController::class, 'authenticate'])->name('login.post');
+});
 
-Route::post('login', function() {
-    return redirect()->route('dashboard');
-})->name('login.post');
-
-Route::get('register', function () {
-    return view('auth.register');
-})->name('register');
-
-Route::post('register', function() {
-    return redirect()->route('login');
-})->name('register.post');
-
-
-Route::get('dashboard', function () {
-    return view('dashboard.index');
-})->name('dashboard');
+# DASHBOARD
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard.index');
+    })->name('dashboard');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+});

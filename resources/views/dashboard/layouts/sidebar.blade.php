@@ -114,14 +114,16 @@
     <div class="d-flex flex-column h-100">
         <div class="d-flex align-items-center justify-content-between px-3 py-3 border-bottom">
             <span class="fw-bold fs-5 sidebar-label">
-                <div class="d-flex align-items-center gap-3">
-                    <img src="{{ asset('img/lampung.png') }}" alt="Logo" width="auto" height="36"
-                        class="d-inline-block align-text-top">
-                    <div>
-                        <div class="fw-semibold" style="font-size: 1.1rem;">Sistem TU BPSMB</div>
-                        <div class="text-muted" style="font-size: 0.95rem;">Disperindag Lampung</div>
+                <a class="navbar-brand" href="{{ route('home')}}">
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="{{ asset('img/lampung.png') }}" alt="Logo" width="auto" height="30"
+                            class="d-inline-block align-text-top">
+                        <div>
+                            <div class="fw-semibold" style="font-size: 0.9rem;">Sistem TU BPSMB</div>
+                            <div class="text-muted" style="font-size: 0.75rem;">Disperindag Lampung</div>
+                        </div>
                     </div>
-                </div>
+                </a>
             </span>
             <button class="btn btn-outline-secondary d-none d-lg-inline" id="sidebarToggle" title="Toggle Sidebar">
                 <i class="bi bi-list"></i>
@@ -145,11 +147,11 @@
             <div class="dropdown">
                 <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle user-info"
                     id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://ui-avatars.com/api/?name=User" alt="User" class="rounded-circle me-2"
+                    <img src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}" alt="User" class="rounded-circle me-2"
                         width="40" height="40">
                     <div>
-                        <div class="fw-semibold">Nama User</div>
-                        <div class="text-muted small">user@email.com</div>
+                        <div class="fw-semibold">{{ Auth::user()->name }}</div>
+                        <div class="text-muted small">{{ Auth::user()->email }}</div>
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="userDropdown">
@@ -159,7 +161,7 @@
                         </a>
                     </li>
                     <li>
-                        <form method="POST" action="" class="m-0">
+                        <form method="POST" action="{{ route('logout') }}" class="m-0">
                             @csrf
                             <button type="submit" class="dropdown-item">
                                 <i class="bi bi-box-arrow-right me-2"></i> Logout

@@ -2,7 +2,7 @@
 
 @section('content')
 <img src="{{asset('img/lampung.png')}}" alt="Logo Provinsi Lampung" class="img-fluid mx-auto d-block mt-5" style="width: 150px; height: auto;">
-<div class="container mt-5">
+<div class="container">
     <div class="text-center mb-4">
         <h1 class="display-4">Sistem Tata Usaha BPSMB</h1>
         <p class="lead">Dinas Perindustrian dan Perdagangan Provinsi Lampung</p>
