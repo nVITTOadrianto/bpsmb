@@ -6,60 +6,73 @@
         <div class="row">
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
                 <div class="card shadow-sm h-100">
-                    <div class="card-body bg-danger text-white d-flex flex-column justify-content-between" style="min-height: 9rem;">
+                    <div class="card-body d-flex flex-column justify-content-between" style="min-height: 9rem;">
                         <div class="fs-5">
-                            <i class="bi bi-envelope-arrow-down"></i>
-                            Surat Masuk
+                            <i class="bi bi-book"></i>
+                            Buku LHP
                         </div>
-                        <div class="fw-bold fs-1">1</div>
+                        <div class="fw-bold fs-1">
+                            {{ $bukuLhpCount }}
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
                 <div class="card shadow-sm h-100">
-                    <div class="card-body bg-warning text-black d-flex flex-column justify-content-between" style="min-height: 9rem;">
+                    <div class="card-body d-flex flex-column justify-content-between" style="min-height: 9rem;">
                         <div class="fs-5">
-                            <i class="bi bi-envelope-arrow-down"></i>
-                            Surat yang Ditandatangani
+                            <i class="bi bi-cup-hot"></i>
+                            Kopi Rutin
                         </div>
-                        <div class="fw-bold fs-1">1</div>
+                        <div class="fw-bold fs-1">
+                            {{ $kopiRutinCount }}
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
                 <div class="card shadow-sm h-100">
-                    <div class="card-body bg-success text-white d-flex flex-column justify-content-between" style="min-height: 9rem;">
+                    <div class="card-body d-flex flex-column justify-content-between" style="min-height: 9rem;">
                         <div class="fs-5">
-                            <i class="bi bi-envelope-arrow-down"></i>
-                            Surat yang Divalidasi
+                            <i class="bi bi-three-dots"></i>
+                            Lada Rutin
                         </div>
-                        <div class="fw-bold fs-1">1</div>
+                        <div class="fw-bold fs-1">
+                            {{ $ladaRutinCount }}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <h4 class="mb-4 fw-bold">Data Surat Masuk Terbaru</h4>
-        <table class="table table-striped table-bordered" style="max-width: max-content;">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h4 class="fw-bold mb-0">5 Data Surat Disposisi Terbaru</h4>
+            <a href="{{ route('admin.surat.index') }}" class="link mb-0">Lihat Semua Surat ></a>
+        </div>
+        <table class="table table-striped mt-3">
             <thead>
                 <tr>
                     <th>No</th>
+                    <th>Nama Perusahaan</th>
+                    <th>Nama Komoditi Sampel</th>
                     <th>Nomor Surat</th>
                     <th>Tanggal Surat</th>
-                    <th>Pengirim</th>
+                    <th>Tanggal dan Waktu Sampel</th>
                     <th>Status</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>123/SM/2023</td>
-                    <td>01-01-2023</td>
-                    <td>PT. Contoh</td>
-                    <td>Belum Ditandatangani</td>
-                </tr>
+                @foreach ($limaSuratTerbaru as $surat)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $surat->nama_perusahaan }}</td>
+                        <td>{{ $surat->nama_komoditi_sampel }}</td>
+                        <td>{{ $surat->nomor_surat }}</td>
+                        <td>{{ $surat->tanggal_masuk_surat }}</td>
+                        <td>{{ $surat->tanggal_masuk }} {{ $surat->waktu_masuk }}</td>
+                        <td>{{ $surat->status_dokumen }}</td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
-        <h4 class="mb-4 fw-bold">Data Surat yang Sudah Ditandatangani Terbaru</h4>
-        <h4 class="mb-4 fw-bold">Data Surat yang Sudah Divalidasi Terbaru</h4>
     </main>
 @endsection

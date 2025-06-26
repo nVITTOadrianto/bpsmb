@@ -44,7 +44,7 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('/admin/surat')->name('admin.surat.')->group(function () {
             Route::get('/', [SuratMasukController::class, 'index'])->name('index');
             Route::get('/create', [SuratMasukController::class, 'create'])->name('create');
-            Route::post('/', [SuratMasukController::class, 'store'])->name('store');
+            Route::post('/create', [SuratMasukController::class, 'store'])->name('store');
             Route::get('/{suratMasuk}', [SuratMasukController::class, 'show'])->name('show');
             Route::post('/{suratMasuk}/send-to-approval', [SuratMasukController::class, 'sendToApproval'])->name('sendToApproval');
             Route::get('/{suratMasuk}/print', [SuratMasukController::class, 'printDocument'])->name('print');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SuratMasuk;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -12,7 +13,13 @@ class DashboardController extends Controller
     public function index()
     {
         // This method can be used to display a list of resources or dashboard data.
-        return view('dashboard.index');
+        $bukuLhpCount = SuratMasuk::all()->where('nama_komoditi_sampel', 'LHP')->count();
+        $kopiRutinCount = SuratMasuk::all()->where('nama_komoditi_sampel', 'Kopi Rutin')->count();
+        $ladaRutinCount = SuratMasuk::all()->where('nama_komoditi_sampel', 'Lada Rutin')->count();
+
+        $limaSuratTerbaru = SuratMasuk::orderBy('created_at', 'desc')->take(5)->get();
+
+        return view('dashboard.index', compact('bukuLhpCount', 'kopiRutinCount', 'ladaRutinCount', 'limaSuratTerbaru'));
     }
 
     /**
